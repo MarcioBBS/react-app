@@ -55,6 +55,25 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+             <Person 
+              name={this.state.persons[0].name} age={this.state.persons[0].age} />
+            <Person 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              click = {this.switchNameHandler.bind(this, 'Me!!!')} 
+              change = {this.nameChangeHandler} >
+              By the way she's my wife!
+            </Person>
+            <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/> 
+          </div> 
+      )  
+    }
+
     return (
       <div className="App">
         <h1>React App</h1>
@@ -63,24 +82,7 @@ class App extends Component {
           style={styleButton}
           onClick={ this.togglePersonsHandler }>Show Persons</button>
 
-        { this.state.showPersons ?   /* If () {} Statement does NOT work inside JSX. Only Ternary operators*/
-          <div>
-             <Person 
-              name={this.state.persons[0].name} 
-              age={this.state.persons[0].age} />             
-            <Person 
-              name={this.state.persons[1].name} 
-              age={this.state.persons[1].age}
-              click = {this.switchNameHandler.bind(this, 'Me!!!')} 
-              change = {this.nameChangeHandler} >
-              By the way she's my wife!
-            </Person>
-            <Person 
-              name={this.state.persons[2].name} 
-              age={this.state.persons[2].age}/> 
-          </div> 
-          : null /** End of Ternary operation */
-        }
+        { persons }
 
       </div>
     );
