@@ -37,7 +37,18 @@ class App extends Component {
   }
 
   deletePersonHandler = personIndex => {
-    const persons = this.state.persons;
+    
+    /* BAD Practice as it mutates the original Array.
+    const persons = this.state.persons; // persons holds a pointer to the state property. NOTE: Objects & Arrays are referenced types.
+    persons.splice(personIndex, 1); // Removes 1 item on the array. This way is a BAD practice as it's mutating the original Array.
+    */
+
+    /* Better practice here is to create a original copy of the Array. We can use Slice() method, WITHOUT passing any arguments
+      Or using Spread Operator, which is a new ES6 feature, thus more modern.
+    */
+
+    //const persons = this.state.persons.slice();  // Using Slice() to copy the original Array
+    const persons = [...this.state.persons]; // Using Spread operator. New ES^6, more modern
     persons.splice(personIndex, 1);
     this.setState({persons : persons});
   }
