@@ -15,7 +15,9 @@ class App extends Component {
       { name: 'Marcio', age: 41 },
       { name: 'Leah', age: 38 },
       { name: 'Julian', age: 1 }
-    ]
+    ],
+
+    showPersons : false
   };
   
   switchNameHandler = (newName) => {
@@ -38,6 +40,11 @@ class App extends Component {
     }); 
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons : !doesShow });
+  }
+
   render() {
 
     const styleButton = {
@@ -54,20 +61,27 @@ class App extends Component {
         <p>Ahaaaa now it's working!!!</p>
         <button
           style={styleButton}
-          onClick={ () => this.switchNameHandler('Marcio Braz')}>Switch name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age} />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click = {this.switchNameHandler.bind(this, 'Me!!!')} 
-          change = {this.nameChangeHandler} >
-          By the way she's my wife!
-        </Person>
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}/>
+          onClick={ this.togglePersonsHandler }>Show Persons</button>
+
+        { this.state.showPersons ?   /* If () {} Statement does NOT work inside JSX. Only Ternary operators*/
+          <div>
+             <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age} />             
+            <Person 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              click = {this.switchNameHandler.bind(this, 'Me!!!')} 
+              change = {this.nameChangeHandler} >
+              By the way she's my wife!
+            </Person>
+            <Person 
+              name={this.state.persons[2].name} 
+              age={this.state.persons[2].age}/> 
+          </div> 
+          : null /** End of Ternary operation */
+        }
+
       </div>
     );
 
