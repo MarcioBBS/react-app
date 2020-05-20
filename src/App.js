@@ -13,9 +13,9 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: 'Marcio', age: 41 },
-      { name: 'Leah', age: 38 },
-      { name: 'Julian', age: 1 }
+      { id: 'a01', name: 'Marcio', age: 41 },
+      { id: 'a02', name: 'Leah', age: 38 },
+      { id: 'a03', name: 'Julian', age: 1 }
     ],
 
     showPersons : false
@@ -46,7 +46,6 @@ class App extends Component {
     /* Better practice here is to create a original copy of the Array. We can use Slice() method, WITHOUT passing any arguments
       Or using Spread Operator, which is a new ES6 feature, thus more modern.
     */
-
     //const persons = this.state.persons.slice();  // Using Slice() to copy the original Array
     const persons = [...this.state.persons]; // Using Spread operator. New ES^6, more modern
     persons.splice(personIndex, 1);
@@ -71,7 +70,7 @@ class App extends Component {
         <div>
           {this.state.persons.map( (person, index) => {
             /** If using bind():  click={ this.deletePersonHandler.bind(index) }   */
-            return <Person name={person.name} age={person.age} click={ () => this.deletePersonHandler(index) }/> 
+            return <Person name={person.name} age={person.age} key={person.id} click={ () => this.deletePersonHandler(index) }/> 
           })}
         </div> 
       );
