@@ -5,8 +5,6 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Person from './Person/Person';
-import person from './Person/Person';
-
 
 // Class-base Components: This is the establish/default syntax.
 class App extends Component {
@@ -21,14 +19,25 @@ class App extends Component {
     showPersons : false
   };
   
-  nameChangeHandler = event => {
-    this.setState ({
-      persons: [
-        { name: 'Marcio', age: 41 },
-        { name: event.target.value, age: 38 },
-        { name: 'Julian', age: 1 }
-      ]
-    }); 
+  nameChangeHandler = (id, event) => {
+    // Find the person and assign it to a constant
+    const personIndex = this.state.persons.findIndex( p => {
+      return p.id === id;
+    });
+
+    // Get the person itself (create a copy from the original)
+    const person = { ...this.state.persons[personIndex] };
+    // Another way [line above] using Object.assign ---> const persons = Object.assign({}, this.state.persons[personIndex]);
+
+    // Update the person name (copy)
+    person.name = event.target.value;
+
+    // Create a new persons Array and Update it with the new value.
+    const persons = [...this.state.persons];
+    persons[personIndex] = person; 
+
+    // Set the new state
+    this.setState({ persons: persons });
   }
 
   togglePersonsHandler = () => {
@@ -47,7 +56,7 @@ class App extends Component {
       Or using Spread Operator, which is a new ES6 feature, thus more modern.
     */
     //const persons = this.state.persons.slice();  // Using Slice() to copy the original Array
-    const persons = [...this.state.persons]; // Using Spread operator. New ES^6, more modern
+    const persons = [...this.state.persons]; // Using Spread operator. New ES6, more modern
     persons.splice(personIndex, 1);
     this.setState({persons : persons});
   }
@@ -70,7 +79,11 @@ class App extends Component {
         <div>
           {this.state.persons.map( (person, index) => {
             /** If using bind():  click={ this.deletePersonHandler.bind(index) }   */
-            return <Person name={person.name} age={person.age} key={person.id} click={ () => this.deletePersonHandler(index) }/> 
+            return <Person name = {person.name} age = {person.age} key = {person.id} 
+              click = { () => this.deletePersonHandler(index) }
+              /** If using bind():  change = { this.nameChangeHandler.bind(person.id) }   */
+              change = { event => this.nameChangeHandler(person.id, event) }
+            /> 
           })}
         </div> 
       );
