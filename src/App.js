@@ -64,8 +64,9 @@ class App extends Component {
   render() {
 
     const styleButton = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
+      color: '#fff',
       border: '1px solid blue',
       padding:'8px',
       cursor: 'pointer'
@@ -87,6 +88,9 @@ class App extends Component {
           })}
         </div> 
       );
+
+      styleButton.backgroundColor = 'red';
+
     }
 
     return (
