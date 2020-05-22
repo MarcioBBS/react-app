@@ -73,7 +73,7 @@ class App extends Component {
     };
 
     let persons = null;
-
+    
     // Output content Conditionally
     if (this.state.showPersons) {
       persons = (
@@ -93,10 +93,19 @@ class App extends Component {
 
     }
 
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
+
     return (
       <div className="App">
         <h1>React App</h1>
-        <p>Ahaaaa now it's working!!!</p>
+        <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
         <button
           style={styleButton}
           onClick={ this.togglePersonsHandler }>Show Persons</button>
