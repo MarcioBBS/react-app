@@ -9,7 +9,7 @@ import Person from './Person/Person';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  background-color: green;
+  background-color: ${props => props.alterStyle ? 'red' : 'green'};
   font: inherit;
   color: #fff;
   padding: 8px 20px;
@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   box-shadow: 0 3px 5px #000;
   
   &:hover {
-    background-color: lightgreen;
+    background-color: ${props => props.alterStyle ? 'salmon' : 'lightgreen'};;
     color: #000
   }
 `;
@@ -80,9 +80,9 @@ class App extends Component {
 
   render() {
 
-    const styleButton = {
+    // const styleButton = {
       
-    };
+    // };
 
     let persons = null;
     
@@ -101,11 +101,11 @@ class App extends Component {
         </div> 
       );
 
-      styleButton.backgroundColor = 'red';
-      styleButton[':hover'] = {
-        backgroundColor : 'salmon',
-        color: '#000'
-      };
+      // styleButton.backgroundColor = 'red';
+      // styleButton[':hover'] = {
+      //   backgroundColor : 'salmon',
+      //   color: '#000'
+      // };
 
     }
 
@@ -122,7 +122,7 @@ class App extends Component {
       <div className="App">
         <h1>React App</h1>
         <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
-        <StyledButton onClick={ this.togglePersonsHandler }>Show Persons</StyledButton>
+        <StyledButton alterStyle= {this.state.showPersons} onClick= { this.togglePersonsHandler }>Show Persons</StyledButton>
 
         { persons }
       </div>
