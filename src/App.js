@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium, {StyleRoot} from 'radium';
 
 // useState is the most important REACT HOOK, It allows us to manage state in the function-base component.
 //import React, { useState } from 'react'; // For REACT HOOKS
@@ -67,9 +68,13 @@ class App extends Component {
       backgroundColor: 'green',
       font: 'inherit',
       color: '#fff',
-      border: '1px solid blue',
-      padding:'8px',
-      cursor: 'pointer'
+      padding:'8px 20px',
+      borderRadius: '30px',
+      boxShadow: '0 3px 5px #000',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: '#000'
+      }
     };
 
     let persons = null;
@@ -90,6 +95,10 @@ class App extends Component {
       );
 
       styleButton.backgroundColor = 'red';
+      styleButton[':hover'] = {
+        backgroundColor : 'salmon',
+        color: '#000'
+      };
 
     }
 
@@ -103,16 +112,17 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1>React App</h1>
-        <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
-        <button
-          style={styleButton}
-          onClick={ this.togglePersonsHandler }>Show Persons</button>
+      <StyleRoot>
+        <div className="App">
+          <h1>React App</h1>
+          <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
+          <button
+            style={styleButton}
+            onClick={ this.togglePersonsHandler }>Show Persons</button>
 
-        { persons }
-
-      </div>
+          { persons }
+        </div>
+      </StyleRoot>  
     );
 
     // This code below gets compiled to the code above (JSX)
@@ -121,7 +131,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
 
 /*
 // Functional components - Using REACT HOOKS

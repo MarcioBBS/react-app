@@ -1,3 +1,26 @@
+*,
+*::after,
+*::before {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: inherit; 
+}
+
+button, button:link, button:visited {
+  display: inline-block;        
+  border: none;
+  cursor: pointer;
+}
+
+button:active, button:focus {
+  outline: none;
+}
+
+body {
+  box-sizing: border-box; 
+  padding: 1.5rem;
+}
+
 .App {
   text-align: center;
 }
