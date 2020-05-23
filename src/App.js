@@ -6,6 +6,21 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Person from './Person/Person';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background-color: green;
+  font: inherit;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 30px;
+  box-shadow: 0 3px 5px #000;
+  
+  &:hover {
+    background-color: lightgreen;
+    color: #000
+  }
+`;
 
 // Class-base Components: This is the establish/default syntax.
 class App extends Component {
@@ -19,6 +34,7 @@ class App extends Component {
 
     showPersons : false
   };
+ 
   
   nameChangeHandler = (id, event) => {
     // Find the person and assign it to a constant
@@ -65,16 +81,7 @@ class App extends Component {
   render() {
 
     const styleButton = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      color: '#fff',
-      padding:'8px 20px',
-      borderRadius: '30px',
-      boxShadow: '0 3px 5px #000',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: '#000'
-      }
+      
     };
 
     let persons = null;
@@ -115,9 +122,7 @@ class App extends Component {
       <div className="App">
         <h1>React App</h1>
         <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
-        <button
-          style={styleButton}
-          onClick={ this.togglePersonsHandler }>Show Persons</button>
+        <StyledButton onClick={ this.togglePersonsHandler }>Show Persons</StyledButton>
 
         { persons }
       </div>

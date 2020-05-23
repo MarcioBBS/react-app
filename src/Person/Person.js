@@ -3,7 +3,8 @@ import './Person.css'
 // import Radium from 'radium';
 import styled from 'styled-components';
 
-// Storing the result of the styled.div method inside of StyledDiv constant.
+// Storing the result of the .div method (from the styled component) inside of StyledDiv constant.
+// Note: Using regular CSS
 const StyledDiv = styled.div `
 
     width: 60%;
