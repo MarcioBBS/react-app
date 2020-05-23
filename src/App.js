@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Radium, {StyleRoot} from 'radium';
+// import Radium, {StyleRoot} from 'radium';
 
 // useState is the most important REACT HOOK, It allows us to manage state in the function-base component.
 //import React, { useState } from 'react'; // For REACT HOOKS
@@ -112,17 +112,15 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>React App</h1>
-          <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
-          <button
-            style={styleButton}
-            onClick={ this.togglePersonsHandler }>Show Persons</button>
+      <div className="App">
+        <h1>React App</h1>
+        <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
+        <button
+          style={styleButton}
+          onClick={ this.togglePersonsHandler }>Show Persons</button>
 
-          { persons }
-        </div>
-      </StyleRoot>  
+        { persons }
+      </div>
     );
 
     // This code below gets compiled to the code above (JSX)
@@ -131,7 +129,7 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
 
 /*
 // Functional components - Using REACT HOOKS
