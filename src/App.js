@@ -8,6 +8,12 @@ import './App.css';
 import Person from './Person/Person';
 import styled from 'styled-components';
 
+/*
+ The Component StyledButton will render in the <head> of the DOM, so the sintax must be real CSS
+ As it's a React Component, this component can receive "props" parameter
+ Sudo selectores (such as :hover) must use &:hover (same me SASS)
+ With styled components it's also possible to inject code in the selector using Literal Templates ${} just like in ES6
+ */ 
 const StyledButton = styled.button`
   background-color: ${props => props.alterStyle ? 'red' : 'green'};
   font: inherit;

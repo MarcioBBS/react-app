@@ -3,8 +3,9 @@ import './Person.css'
 // import Radium from 'radium';
 import styled from 'styled-components';
 
-// Storing the result of the .div method (from the styled component) inside of StyledDiv constant.
+// Storing the result of the .div method (from the styled object) inside of StyledDiv constant.
 // Note: Using regular CSS
+// StyledDiv returns a React component, that's the reason the 1st letter is uppercase StyleDiv instead of styledDiv
 const StyledDiv = styled.div `
 
     width: 60%;
