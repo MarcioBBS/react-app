@@ -1,32 +1,9 @@
 import React, { Component } from 'react';
-// import Radium, {StyleRoot} from 'radium';
-
 // useState is the most important REACT HOOK, It allows us to manage state in the function-base component.
 //import React, { useState } from 'react'; // For REACT HOOKS
 
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
-import styled from 'styled-components';
-
-/*
- The Component StyledButton will render in the <head> of the DOM, so the sintax must be real CSS
- As it's a React Component, this component can receive "props" parameter
- Sudo selectores (such as :hover) must use &:hover (same me SASS)
- With styled components it's also possible to inject code in the selector using Literal Templates ${} just like in ES6
- */ 
-const StyledButton = styled.button`
-  background-color: ${props => props.alterStyle ? 'red' : 'green'};
-  font: inherit;
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 30px;
-  box-shadow: 0 3px 5px #000;
-  
-  &:hover {
-    background-color: ${props => props.alterStyle ? 'salmon' : 'lightgreen'};;
-    color: #000
-  }
-`;
 
 // Class-base Components: This is the establish/default syntax.
 class App extends Component {
@@ -86,9 +63,7 @@ class App extends Component {
 
   render() {
 
-    // const styleButton = {
-      
-    // };
+    let btnClass = '';
 
     let persons = null;
     
@@ -107,28 +82,23 @@ class App extends Component {
         </div> 
       );
 
-      // styleButton.backgroundColor = 'red';
-      // styleButton[':hover'] = {
-      //   backgroundColor : 'salmon',
-      //   color: '#000'
-      // };
-
+      btnClass = classes.Red;
     }
 
-    let classes = [];
+    let assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(classes.Red);
     }
 
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.Bold);
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>React App</h1>
-        <p className= {classes.join(' ')}>Ahaaaa now it's working!!!</p>
-        <StyledButton alterStyle= {this.state.showPersons} onClick= { this.togglePersonsHandler }>Show Persons</StyledButton>
+        <p className= {assignedClasses.join(' ')}>Ahaaaa now it's working!!!</p>
+        <button className={btnClass} onClick= { this.togglePersonsHandler }>Show Persons</button>
 
         { persons }
       </div>
