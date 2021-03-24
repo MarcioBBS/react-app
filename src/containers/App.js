@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 //import React, { useState } from 'react'; // For REACT HOOKS
 
 import classes from './App.css';
-import Person from './Person/Person';
+import Person from '../Components/Persons/Person/Person';
+import Persons from '../Components/Persons/Persons';
 
 // Class-base Components: This is the establish/default syntax.
 class App extends Component {
@@ -64,21 +65,17 @@ class App extends Component {
   render() {
 
     let btnClass = '';
-
     let persons = null;
     
     // Output content Conditionally
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map( (person, index) => {
-            /** If using bind():  click={ this.deletePersonHandler.bind(index) }   */
-            return <Person name = {person.name} age = {person.age} key = {person.id} 
-              click = { () => this.deletePersonHandler(index) }
-              /** If using bind():  change = { this.nameChangeHandler.bind(person.id) }   */
-              change = { event => this.nameChangeHandler(person.id, event) }
-            /> 
-          })}
+          <Persons  
+            persons={this.state.persons}
+            click={this.deletePersonHandler}
+            changed={this.nameChangeHandler}
+          />
         </div> 
       );
 
